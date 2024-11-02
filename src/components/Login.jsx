@@ -3,6 +3,8 @@ import Lottie from 'lottie-react';
 import animationData from '../assets/bglog4.json';
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const generateCaptcha = (length) => {
   const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   let captcha = '';
@@ -34,13 +36,13 @@ const Login = () => {
     const loginData = { memberId, password };
 
     try {
-      const response = await axios.post('http://localhost:5000/login', loginData);
+      const response = await axios.post(`${API_URL}/login`, loginData);
       alert('Login successful!'); // Handle successful login (e.g., redirect or store token)
       console.log(response.data); // Log response for debugging
     } catch (error) {
       console.error('Error during login:', error);
       if (error.response) {
-        alert('Login failed: ' + error.response.data.message); // Handle errors from the server
+        alert('Login failed: ' + error.response.data.message); 
       } else {
         alert('An error occurred. Please try again later.');
       }

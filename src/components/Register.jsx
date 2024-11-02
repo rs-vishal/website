@@ -3,6 +3,9 @@ import Lottie from 'lottie-react';
 import animationData from '../assets/bglog4.json';
 import axios from 'axios';
 
+
+const API_URL = import.meta.env.VITE_API_URL;
+
 const Register = () => {
   const [formData, setFormData] = useState({
     temzId: '',
@@ -29,7 +32,7 @@ const Register = () => {
     setError(''); // Clear any previous errors
 
     try {
-      const response = await axios.post('http://localhost:5000/api/register', formData);
+      const response = await axios.post(`${API_URL}/register`, formData);
       console.log('Success:', response.data); // Handle success
     } catch (error) {
       console.error('Error:', error.response ? error.response.data : error.message);
