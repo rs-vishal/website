@@ -28,6 +28,9 @@ const Navbar = () => {
           <Link to="/contact" className="nav-item nav-link text-gray-800 font-medium hover:text-primary transition duration-300">
             Contact
           </Link>
+          <Link to="/signinsignup" className="nav-item nav-link text-gray-800 font-medium hover:text-primary transition duration-300">
+            Log In
+          </Link>
         </div>
         <div className="lg:hidden">
           <button
