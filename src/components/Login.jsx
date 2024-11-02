@@ -68,7 +68,7 @@ const Login = () => {
               id="member-id"
               value={memberId}
               onChange={(e) => setMemberId(e.target.value)}
-              className="w-full p-3 mt-3 bg-transparent border border-white rounded-lg  placeholder-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="w-full p-2 mt-3 bg-transparent border border-white rounded-lg  placeholder-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500"
               placeholder="Member ID"
               required
             />
@@ -83,7 +83,7 @@ const Login = () => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-3 mt-3 bg-transparent border border-white rounded-lg  placeholder-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="w-full p-2 mt-3 bg-transparent border border-white rounded-lg  placeholder-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500"
               placeholder="Password"
               required
             />
