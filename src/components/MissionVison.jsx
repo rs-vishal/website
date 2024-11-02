@@ -13,8 +13,8 @@ export default function MissionVison() {
                     </div>
                     <div className="col-lg-6 animated fadeIn">
                         <img
-                            className="img-fluid animated pulse infinite"
-                            style={{ animationDuration: '3s' }}
+                className="img-fluid animate-fadeIn animate-pulse" 
+                style={{ animationDuration: '3s' }}
                             src={coin}
                             alt=""
                         />

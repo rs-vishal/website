@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
+// import { API_URL } from "@env";
 
 const SignInSignUp = () => {
   const [isActive, setIsActive] = useState(false);
@@ -54,7 +55,64 @@ const SignInSignUp = () => {
       setSignUpErrors(errors);
     }
   };
-
+  
+  const handleSignInaction = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await fetch(`${API_URL}/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        body: signInData
+      });
+      const data = await response.json();
+      if (response.ok) {
+        setUser(data);
+        navigate('/');
+      } else {
+        console.log(data.error);
+      }
+    } catch (error) {
+      console.log('Something went wrong. Please try again.');
+    }
+  };
+   
+  const hangelesignupaction = async (e) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      console.log("Passwords do not match");
+      setError("Passwords do not match");
+      return;
+    }
+    try {
+      const response = await fetch(`${API_URL}/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        body: signUpData
+      });
+      if (response.data.success) {
+        console.log(response.data.message);
+        navigate("/login");
+      } else {
+        console.log(response.data.message);
+      }
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        console.log(error.response.data.message);
+      } else {
+        console.log("There was an error registering!");
+      }
+    }
+  };
   const handleSignIn = (e) => {
     e.preventDefault();
     const errors = validateSignIn();
@@ -203,6 +261,8 @@ const SignInSignUp = () => {
             <button
               style={{ backgroundColor: "#b75fc8" }}
               className="text-white font-semibold px-6 py-2 rounded-md mt-3"
+              onClick={hangelesignupaction}
+
             >
               Sign Up
             </button>
@@ -268,6 +328,7 @@ const SignInSignUp = () => {
             <button
               style={{ backgroundColor: "#b75fc8" }}
               className="text-white font-semibold px-6 py-2 rounded-md mt-3"
+              onClick={handleSignInaction}
             >
               Sign In
             </button>
