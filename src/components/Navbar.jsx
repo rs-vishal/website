@@ -6,13 +6,13 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-white shadow-sm sticky top-0 px-4 lg:px-5 py-2 z-50">
+    <nav className=" bg-white shadow-sm sticky top-0 px-4 lg:px-5 py-2 z-50">
       <div className="flex justify-between items-center">
         <Link to="/" className="flex items-center">
           <img className="w-12 mr-2" src={logo} alt="CryptoCoin Logo" />
           <h2 className="text-primary m-0 text-2xl">CryptoCoin</h2>
         </Link>
-        <div className="hidden lg:flex flex-row items-center space-x-6">
+        <div className="hidden lg:flex flex-row items-center space-x-1">
           <Link to="/" className="nav-item nav-link text-gray-800 font-medium hover:text-primary transition duration-300">
             Home
           </Link>
@@ -25,10 +25,7 @@ const Navbar = () => {
           <Link to="/missionvision" className="nav-item nav-link text-gray-800 font-medium hover:text-primary transition duration-300">
             Mission & Vision
           </Link>
-          <Link to="/contact" className="nav-item nav-link text-gray-800 font-medium hover:text-primary transition duration-300">
-            Contact
-          </Link>
-          <Link to="/signinsignup" className="nav-item nav-link text-gray-800 font-medium hover:text-primary transition duration-300">
+          <Link to="/login" className="nav-item nav-link text-gray-800 font-medium hover:text-primary transition duration-300">
             Log In
           </Link>
         </div>

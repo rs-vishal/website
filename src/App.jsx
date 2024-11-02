@@ -7,7 +7,8 @@ import PageNotFound from './components/PageNotFound';
 import Navbar from "./components/Navbar";
 import TechStack from "./components/TechStack";
 import MissionVison from "./components/MissionVison";
-import Contact from "./components/Contact";
+import Login from "./components/Login";
+import Register from "./components/Register"
 
 function App() {
   return (
@@ -17,8 +18,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact/>} />
-          <Route path="/signinsignup" element={<SignInSignUp />} />
+          <Route path="/login" element={<Login/>} />
+          <Route path="/register" element={<Register/>}/>
           <Route path="/techstack" element={<TechStack />} />
           <Route path="/missionvision" element={<MissionVison />} />
 
