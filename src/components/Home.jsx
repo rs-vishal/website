@@ -22,7 +22,22 @@ const Home = () => {
   useEffect(() => {
     AOS.init();
   }, []);
+  const renderAuthLinks = () => {
+    const isAuthenticated = localStorage.getItem('isAuthenticated');
 
+    if (isAuthenticated) {
+      return (
+        <div className="fixed bottom-4 left-0 right-0 flex justify-center p-4 bg-black bg-opacity-0 rounded">
+  <button className="bg-primary text-white font-medium py-2 px-4 rounded">
+    Get Started
+  </button>
+</div>
+
+
+      
+      );
+    } 
+  };
   return (
     <div>
       {/* Header */}
@@ -83,11 +98,18 @@ const Home = () => {
                 sustainable solutions to drive positive change and support our
                 planet.
               </p>
+              
+
             </div>
+            {renderAuthLinks()}
+
           </div>
         </div>
-      </div>
+        
+        
 
+
+      </div>
       {/* About */}
       <div className="container-xxl py-5">
         <div className="container">

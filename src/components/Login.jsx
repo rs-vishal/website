@@ -39,10 +39,12 @@ const Login = () => {
     try {
       const response = await axios.post(`${API_URL}/login`, loginData);
       alert('Login successful!'); 
-      // Store user session data in sessionStorage
-      sessionStorage.setItem('userToken', response.token);
-      sessionStorage.setItem('username', response.username);
-      sessionStorage.setItem('userRole', response.role);
+      // Store user session data in localstorage
+      localStorage.setItem("isAuthenticated",true)
+      localStorage.setItem("usename",response.name)
+      localStorage.setItem("usermail",response.email)
+      localStorage.setItem("teamzid",response.teamzid)
+      localStorage.setItem("ph-num",response.phonenumber)
       console.log(response.data); 
       navigate('/');
 
