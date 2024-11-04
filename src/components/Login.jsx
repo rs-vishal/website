@@ -41,10 +41,10 @@ const Login = () => {
       alert('Login successful!'); 
       // Store user session data in localstorage
       localStorage.setItem("isAuthenticated",true)
-      localStorage.setItem("usename",response.name)
-      localStorage.setItem("usermail",response.email)
-      localStorage.setItem("teamzid",response.teamzid)
-      localStorage.setItem("ph-num",response.phonenumber)
+      ocalStorage.setItem("username", response.data.user.name);
+        localStorage.setItem("usermail", response.data.user.email);
+        localStorage.setItem("teamzid", response.data.user.teamzid);
+        localStorage.setItem("ph-num", response.data.user.phonenumber);
       console.log(response.data); 
       navigate('/');
 
