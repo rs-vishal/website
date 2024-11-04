@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Lottie from 'lottie-react';
 import animationData from '../assets/bglog4.json';
 import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -37,8 +38,15 @@ const Login = () => {
 
     try {
       const response = await axios.post(`${API_URL}/login`, loginData);
-      alert('Login successful!'); // Handle successful login (e.g., redirect or store token)
-      console.log(response.data); // Log response for debugging
+      alert('Login successful!'); 
+      // Store user session data in sessionStorage
+      sessionStorage.setItem('userToken', response.token);
+      sessionStorage.setItem('username', response.username);
+      sessionStorage.setItem('userRole', response.role);
+      console.log(response.data); 
+      navigate('/');
+
+
     } catch (error) {
       console.error('Error during login:', error);
       if (error.response) {
