@@ -8,11 +8,11 @@ const API_URL = import.meta.env.VITE_API_URL;
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
-    temzId: '',
+    existingtemzid: '',
     name: '',
     email: '',
     password: '',
-    phoneCode: '',
+    countryCode: '',
     phoneNumber: '',
   });
   const [error, setError] = useState('');
@@ -29,8 +29,8 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.temzId) {
-      setError('TEMZ ID is required');
+    if (!formData.existingtemzid) {
+      setError('Existing TEMZ ID is required');
       return;
     }
     if (formData.password !== formData.confirmPassword) {
@@ -40,7 +40,14 @@ const Register = () => {
     setError(''); // Clear any previous errors
 
     try {
-      const response = await axios.post(`${API_URL}/register`, formData);
+      const response = await axios.post(`${API_URL}/register`, {
+        existingtemzid: formData.existingtemzid,
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        countryCode: formData.countryCode,
+        phonenumber: formData.phoneNumber,
+      });
       console.log('Success:', response.data); // Handle success
     } catch (error) {
       console.error('Error:', error.response ? error.response.data : error.message);
@@ -63,15 +70,15 @@ const Register = () => {
 
         <form className="mt-6 space-y-6" onSubmit={handleSubmit}>
           <div>
-            <label className="block text-sm font-medium" htmlFor="temz-id">TEMZ ID</label>
+            <label className="block text-sm font-medium" htmlFor="existingtemzid">Existing TEMZ ID</label>
             <input
               type="text"
-              id="temz-id"
-              name="temzId"
-              value={formData.temzId}
+              id="existingtemzid"
+              name="existingtemzid"
+              value={formData.existingtemzid}
               onChange={handleChange}
               className="w-full p-2 mt-3 bg-transparent border border-white rounded-lg placeholder-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500"
-              placeholder="Temz ID"
+              placeholder="Existing TEMZ ID"
               required
             />
           </div>
@@ -86,6 +93,7 @@ const Register = () => {
               onChange={handleChange}
               className="w-full p-2 mt-3 bg-transparent border border-white rounded-lg placeholder-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500"
               placeholder="Name"
+              required
             />
           </div>
 
@@ -99,6 +107,7 @@ const Register = () => {
               onChange={handleChange}
               className="w-full p-2 mt-3 bg-transparent border border-white rounded-lg placeholder-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500"
               placeholder="Email"
+              required
             />
           </div>
 
@@ -113,6 +122,7 @@ const Register = () => {
                 onChange={handleChange}
                 className="w-full p-2 mt-3 bg-transparent border border-white rounded-lg placeholder-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500"
                 placeholder="Password"
+                required
               />
               <button
                 type="button"
@@ -135,6 +145,7 @@ const Register = () => {
                 onChange={handleChange}
                 className="w-full p-2 mt-3 bg-transparent border border-white rounded-lg placeholder-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500"
                 placeholder="Confirm Password"
+                required
               />
               <button
                 type="button"
@@ -150,40 +161,16 @@ const Register = () => {
             <label className="block text-sm font-medium" htmlFor="phone">Phone Number</label>
             <div className="ml-3 flex-grow flex items-center">
               <select
-                name="phoneCode"
-                value={formData.phoneCode}
+                name="countryCode"
+                value={formData.countryCode}
                 onChange={handleChange}
                 className="bg-white border border-white rounded-lg text-black mr-2 p-1 w-24 focus:outline-none focus:ring-2 focus:ring-orange-500"
               >
-                 <option value="" disabled>Select country code</option>
+                <option value="" disabled>Select country code</option>
                 <option value="+1">+1 (USA/Canada)</option>
                 <option value="+91">+91 (India)</option>
                 <option value="+44">+44 (UK)</option>
-                <option value="+61">+61 (Australia)</option>
-                <option value="+49">+49 (Germany)</option>
-                <option value="+33">+33 (France)</option>
-                <option value="+81">+81 (Japan)</option>
-                <option value="+86">+86 (China)</option>
-                <option value="+7">+7 (Russia)</option>
-                <option value="+39">+39 (Italy)</option>
-                <option value="+34">+34 (Spain)</option>
-                <option value="+55">+55 (Brazil)</option>
-                <option value="+27">+27 (South Africa)</option>
-                <option value="+82">+82 (South Korea)</option>
-                <option value="+46">+46 (Sweden)</option>
-                <option value="+31">+31 (Netherlands)</option>
-                <option value="+61">+61 (New Zealand)</option>
-                <option value="+353">+353 (Ireland)</option>
-                <option value="+420">+420 (Czech Republic)</option>
-                <option value="+45">+45 (Denmark)</option>
-                <option value="+351">+351 (Portugal)</option>
-                <option value="+47">+47 (Norway)</option>
-                <option value="+41">+41 (Switzerland)</option>
-                <option value="+43">+43 (Austria)</option>
-                <option value="+48">+48 (Poland)</option>
-                <option value="+30">+30 (Greece)</option>
-                <option value="+41">+41 (Switzerland)</option>
-                <option value="+886">+886 (Taiwan)</option>
+                {/* Add other country codes as needed */}
               </select>
               <input
                 type="text"
@@ -193,6 +180,7 @@ const Register = () => {
                 onChange={handleChange}
                 className="w-full p-2 bg-transparent border border-white rounded-lg placeholder-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500"
                 placeholder="Number"
+                required
               />
             </div>
           </fieldset>
@@ -201,7 +189,7 @@ const Register = () => {
             type="submit"
             className="w-full flex justify-center py-2 bg-orange-500 rounded-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-700"
           >
-            <p>Connect Wallet</p>
+            <p>Register</p>
           </button>
 
           <p className="mt-4 text-center text-sm">

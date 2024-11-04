@@ -19,8 +19,9 @@ const Login = () => {
   const [captcha, setCaptcha] = useState('');
   const [userCaptcha, setUserCaptcha] = useState('');
   const [captchaError, setCaptchaError] = useState(false);
-  const [memberId, setMemberId] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     setCaptcha(generateCaptcha(6)); // Generate a new CAPTCHA when the component mounts
@@ -34,20 +35,19 @@ const Login = () => {
     }
 
     // Prepare the login data
-    const loginData = { memberId, password };
+    const loginData = { email, password };
 
     try {
       const response = await axios.post(`${API_URL}/login`, loginData);
       alert('Login successful!'); 
-      // Store user session data in localstorage
-      localStorage.setItem("isAuthenticated",true)
-      ocalStorage.setItem("username", response.data.user.name);
-        localStorage.setItem("usermail", response.data.user.email);
-        localStorage.setItem("teamzid", response.data.user.teamzid);
-        localStorage.setItem("ph-num", response.data.user.phonenumber);
+      // Store user session data in local storage
+      localStorage.setItem("isAuthenticated", true);
+      localStorage.setItem("username", response.data.user.name);
+      localStorage.setItem("usermail", response.data.user.email);
+      localStorage.setItem("teamzid", response.data.user.temzid);
+      localStorage.setItem("ph-num", response.data.user.phonenumber);
       console.log(response.data); 
-      navigate('/');
-
+      navigate('/'); // Navigate to the home page or desired route
 
     } catch (error) {
       console.error('Error during login:', error);
@@ -72,16 +72,16 @@ const Login = () => {
 
         <form className="mt-6 space-y-8" onSubmit={handleSubmit}>
           <div>
-            <label className="block text-sm font-medium " htmlFor="member-id">
-              Member-ID
+            <label className="block text-sm font-medium " htmlFor="email">
+              Email
             </label>
             <input
-              type="text"
-              id="member-id"
-              value={memberId}
-              onChange={(e) => setMemberId(e.target.value)}
-              className="w-full p-2 mt-3 bg-transparent border border-white rounded-lg  placeholder-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500"
-              placeholder="Member ID"
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full p-2 mt-3 bg-transparent border border-white rounded-lg placeholder-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500"
+              placeholder="Email"
               required
             />
           </div>
@@ -95,7 +95,7 @@ const Login = () => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-2 mt-3 bg-transparent border border-white rounded-lg  placeholder-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="w-full p-2 mt-3 bg-transparent border border-white rounded-lg placeholder-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500"
               placeholder="Password"
               required
             />
@@ -110,7 +110,7 @@ const Login = () => {
               type="text"
               value={userCaptcha}
               onChange={(e) => setUserCaptcha(e.target.value)}
-              className={`flex-1 p-2 bg-transparent border ${captchaError ? 'border-red-500' : 'border-white'} rounded-lg  placeholder-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500`}
+              className={`flex-1 p-2 bg-transparent border ${captchaError ? 'border-red-500' : 'border-white'} rounded-lg placeholder-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500`}
               placeholder="Enter CAPTCHA"
               required
               style={{ fontSize: '0.9rem' }}
@@ -118,25 +118,25 @@ const Login = () => {
             {captchaError && <p className="text-red-500 text-sm ml-2">Incorrect CAPTCHA. Please try again.</p>}
           </div>
 
-          <div className="flex items-center justify-between text-sm ">
+          <div className="flex items-center justify-between text-sm">
             <label className="flex items-center">
               <input type="checkbox" className="form-checkbox h-4 w-4 text-orange-500" />
               <span className="ml-2">Remember me</span>
             </label>
-            <a href="#" className="hover:underline">Forgot password?</a>
+            <Link to="/forgot-password" className="hover:underline">Forgot password?</Link>
           </div>
 
           <button
             type="submit"
-            className="w-full py-2 mt-4 bg-orange-500 rounded-lg  hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-700"
+            className="w-full py-2 mt-4 bg-orange-500 rounded-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-700"
           >
             Login
           </button>
         </form>
 
-        <p className="mt-4 text-center text-sm ">
+        <p className="mt-4 text-center text-sm">
           Don't have an account?{' '}
-          <a href="register" className="font-medium text-orange-500 hover:underline">Register</a>
+          <Link to="/register" className="font-medium text-orange-500 hover:underline">Register</Link>
         </p>
       </div>
     </div>

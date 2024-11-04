@@ -5,7 +5,7 @@ import User from '../models/user.js';
 
 const router = express.Router();
 
-function generateReferralId() {
+function generateTeamzId() {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     let id = '';
     for (let i = 0; i < 6; i++) {
@@ -18,37 +18,42 @@ function generateReferralId() {
 router.post('/register', async (req, res) => {
     const { existingtemzid, name, email, password, countryCode, phonenumber } = req.body;
 
-    // Basic validation for required fields
-    if (!email || !password || !name || !existingtemzid ){
+    if (!email || !password || !existingtemzid || !name || !countryCode || !phonenumber) {
         return res.status(400).json({ message: 'Missing required fields' });
     }
 
     try {
         const existingUser = await User.findOne({ email });
         if (existingUser) {
-            return res.status(400).json({ message: 'User already exists' });
+            return res.status(409).json({ message: 'User already exists' });
         }
 
-        const temzid = generateReferralId();
-        const hashedPassword = await bcrypt.hash(password, 10);
+        const validTemzid = await User.findOne({ temzid: existingtemzid });
+        if (!validTemzid) {
+            return res.status(400).json({ message: 'Invalid existing temzid' });
+        }
 
-        const newUser = new User({
-            existingtemzid,
+        const existingPhoneNumber = await User.findOne({ phonenumber });
+        if (existingPhoneNumber) {
+            return res.status(409).json({ message: 'Phone number already in use' });
+        }
+
+        const temzid = generateTeamzId();
+        const hashedPassword = await bcrypt.hash(password, 12);
+        
+        await User.create({
             temzid,
-    
             name,
             email,
             password: hashedPassword,
             countryCode,
-            phonenumber
+            phonenumber,
         });
 
-        await newUser.save();
-
-        res.status(201).json({ message: 'User registered successfully', temzid});
+        res.status(201).json({ message: 'User registered successfully', temzid });
     } catch (err) {
         console.error('Registration error:', err);
-        res.status(500).json({ message: 'Server error' });
+        res.status(500).json({ message: 'Server error', error: err.message });
     }
 });
 
@@ -72,7 +77,7 @@ router.post('/login', async (req, res) => {
         }
 
         if (!process.env.JWT_SECRET) {
-            return res.status(500).json({ message: 'JWT_SECRET is not set in environment variables' });
+            throw new Error('JWT_SECRET is not set');
         }
 
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
