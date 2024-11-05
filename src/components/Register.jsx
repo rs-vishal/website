@@ -30,7 +30,8 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
+    // Form validation
     if (!formData.existingtemzid) {
       setError("Existing TEMZ ID is required");
       return;
@@ -40,7 +41,7 @@ const Register = () => {
       return;
     }
     setError(""); // Clear any previous errors
-
+  
     try {
       const response = await axios.post(`${API_URL}/register`, {
         existingtemzid: formData.existingtemzid,
@@ -50,16 +51,26 @@ const Register = () => {
         countryCode: formData.countryCode,
         phonenumber: formData.phoneNumber,
       });
+  
       console.log("Success:", response.data);
       navigate("/login"); // Navigate to the login page
     } catch (error) {
-      console.error(
-        "Error:",
-        error.response ? error.response.data : error.message
-      );
-      setError("An error occurred while connecting."); // Handle error
+      // Check if error.response is available, which indicates backend error
+      if (error.response) {
+        // Backend error response with a message
+        setError(error.response.data.message || "An error occurred");
+      } else if (error.request) {
+        // Request made but no response received
+        setError("No response received from server. Please try again later.");
+      } else {
+        // Other errors (e.g., setup errors)
+        setError("An error occurred while setting up the request.");
+      }
+  
+      console.error("Error:", error);
     }
   };
+  
 
   return (
     <div className="text-black relative min-h-screen flex items-center justify-end overflow-hidden">

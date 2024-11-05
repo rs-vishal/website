@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Lottie from 'lottie-react';
 import animationData from '../assets/bglog4.json';
+import succesanimation from "../assets/sucess.json"
 import axios from 'axios';
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-
 const API_URL = import.meta.env.VITE_API_URL;
-
 
 const generateCaptcha = (length) => {
   const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -24,6 +23,7 @@ const Login = () => {
   const [captchaError, setCaptchaError] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [successMessage, setSuccessMessage] = useState(false); // State for success message visibility
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -42,15 +42,23 @@ const Login = () => {
 
     try {
       const response = await axios.post(`${API_URL}/login`, loginData);
-      alert('Login successful!'); 
+      console.log(response.data); 
+      
+      // Display the success message
+      setSuccessMessage(true);
+
       // Store user session data in local storage
       localStorage.setItem("isAuthenticated", true);
       localStorage.setItem("username", response.data.user.name);
       localStorage.setItem("usermail", response.data.user.email);
       localStorage.setItem("teamzid", response.data.user.temzid);
       localStorage.setItem("ph-num", response.data.user.phonenumber);
-      console.log(response.data); 
-      navigate('/'); 
+
+      // Hide success message after 1.5 seconds and navigate to home
+      setTimeout(() => {
+        setSuccessMessage(false);
+        navigate('/'); // Navigate to the home page
+      }, 3000); // 1.5 seconds
     } catch (error) {
       console.error('Error during login:', error);
       if (error.response) {
@@ -140,7 +148,22 @@ const Login = () => {
           Don't have an account?{' '}
           <Link to="/register" className="font-medium text-orange-500 hover:underline">Register</Link>
         </p>
+
+        {/* Success Message Popup */}
+
       </div>
+      {successMessage && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 z-10">
+  {/* Lottie Animation */}
+
+
+  {/* Success Message */}
+  <div className="p-4 bg-green-500 text-white rounded-lg absolute z-20">
+    Login Successful!
+  </div>
+</div>
+
+        )}
     </div>
   );
 };

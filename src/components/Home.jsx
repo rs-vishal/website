@@ -28,9 +28,9 @@ const Home = () => {
     if (isAuthenticated) {
       return (
         <div className="fixed bottom-4 left-0 right-0 flex justify-center p-4 bg-black bg-opacity-0 rounded">
-  <button className="bg-primary text-white font-medium py-2 px-4 rounded">
-    Get Started
-  </button>
+          <a href="subscribe">
+  <button className="bg-amber-300 text-white font-medium py-2 px-4 rounded">Connect
+  </button></a>
 </div>
 
 
@@ -363,6 +363,26 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <footer className="bg-blue-50 text-black py-10">
+                <div className="max-w-7xl mx-auto flex justify-between flex-wrap">
+                    <div className="flex-1 min-w-250px p-5">
+                        <img src="logo.png" alt="Logo" className="w-12 mb-2" />
+                        <p>
+                            companyname was founded by a team of passionate cryptocurrency
+                            enthusiasts with a shared vision.
+                        </p>
+                        <p>&copy; 2024 companyname. All Rights Reserved.</p>
+                    </div>
+                    <div className="flex-1 min-w-250px p-5 text-center">
+                    </div>
+                    <div className="flex-1 min-w-250px p-5 text-right">
+                        <h3 className="font-bold text-black">Contact Us</h3>
+                        <p>Phone: +44 20 7123 4567</p>
+                        <p>Email: cc@gmail.com</p>
+                        <p>Address: UK, London</p>
+                    </div>
+                </div>
+            </footer>
     </div>
   );
 };

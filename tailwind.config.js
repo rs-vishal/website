@@ -6,6 +6,14 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Poppins', 'Arial', 'sans-serif'],  // Default sans-serif font
+        roboto: ['Roboto', 'sans-serif'],
+        montserrat: ['Montserrat', 'sans-serif'],          // For using Roboto
+        lora: ['Lora', 'serif'],  
+        firaSansCondensed: ['Fira Sans Condensed', 'sans-serif'], 
+        playfairDisplay: ['Playfair Display', 'serif'],            // For using Lora
+      },
       animation: {
         fadeIn: 'fadeIn 3s ease-in-out forwards',
         pulse: 'pulse 3s infinite',

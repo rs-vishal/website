@@ -9,6 +9,7 @@ import TechStack from "./components/TechStack";
 import MissionVison from "./components/MissionVison";
 import Login from "./components/Login";
 import Register from "./components/Register"
+import Subscription from "./components/Subscription";
 
 function App() {
   return (
@@ -22,11 +23,11 @@ function App() {
           <Route path="/register" element={<Register/>}/>
           <Route path="/techstack" element={<TechStack />} />
           <Route path="/missionvision" element={<MissionVison />} />
-
-
+          <Route path="/subscribe" element={<Subscription/>}/>
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Router>
+
     </>
   );
 }
