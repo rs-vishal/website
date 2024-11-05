@@ -1,0 +1,51 @@
+/* Navbar.css */
+
+/* General styles for the navbar */
+.nav-item {
+    padding: 10px 15px; /* Space around items */
+    transition: background-color 0.3s ease; /* Smooth transition for background */
+  }
+  
+  /* Mobile menu styles */
+  @media (max-width: 768px) {
+    .nav-item {
+      display: block; /* Stack items vertically on mobile */
+      padding: 10px; /* Space for mobile items */
+      text-align: left; /* Align text to the left */
+      width: 100%; /* Full width for mobile items */
+    }
+  
+    /* Hide dropdown by default */
+    .dropdown-menu {
+      display: none; /* Hide the dropdown */
+      position: absolute; /* Positioning for dropdown */
+      background: white; /* Dropdown background color */
+      z-index: 1; /* Ensure dropdown is above other content */
+      width: 100%; /* Full width dropdown */
+    }
+  
+    /* Show dropdown when toggled */
+    .dropdown:hover .dropdown-menu,
+    .dropdown:focus-within .dropdown-menu {
+      display: block; /* Show dropdown on hover or focus */
+    }
+  }
+  
+  /* Navbar background color and shadow */
+  .bg-white {
+    background-color: #ffffff; /* White background */
+  }
+  
+  .shadow-sm {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Light shadow effect */
+  }
+  
+  /* Hover effects */
+  .hover\:scale-105:hover {
+    transform: scale(1.05); /* Scale effect on hover */
+  }
+  
+  .hover\:text-primary:hover {
+    color: #007bff; /* Change text color on hover (adjust to your primary color) */
+  }
+  

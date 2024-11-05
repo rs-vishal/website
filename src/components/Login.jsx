@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Lottie from 'lottie-react';
 import animationData from '../assets/bglog4.json';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 
 const API_URL = import.meta.env.VITE_API_URL;
+
 
 const generateCaptcha = (length) => {
   const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -47,8 +50,7 @@ const Login = () => {
       localStorage.setItem("teamzid", response.data.user.temzid);
       localStorage.setItem("ph-num", response.data.user.phonenumber);
       console.log(response.data); 
-      navigate('/'); // Navigate to the home page or desired route
-
+      navigate('/'); 
     } catch (error) {
       console.error('Error during login:', error);
       if (error.response) {
