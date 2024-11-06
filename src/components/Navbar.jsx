@@ -8,16 +8,66 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
-  // For navigation after logout
-  const navigate = useNavigate();
+  const handleLinkClick = () => {
+    setIsOpen(false);
+    setDropdownOpen(false);
+  };
 
-  // Close dropdown if clicked outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (!event.target.closest('.relative')) {
-        setDropdownOpen(false);
-      }
-    };
+  const toggleDropdown = (event) => {
+    event.stopPropagation();
+    setDropdownOpen((prev) => {
+      const newValue = !prev;
+      console.log('Dropdown is now:', newValue ? 'Open' : 'Closed'); // Console log the dropdown state
+      return newValue;
+    });
+  };
+
+  const closeDropdown = () => {
+    setDropdownOpen(false);
+  };
+
+  const renderAuthLinks = () => {
+    const isAuthenticated = localStorage.getItem('isAuthenticated');
+    
+    if (!isAuthenticated) {
+      return (
+        <Link to="/login" onClick={handleLinkClick} className="nav-item nav-link text-gray-800 font-medium hover:text-primary transition duration-300 hover:scale-105">
+          Log In
+        </Link>
+      );
+    } else {
+      return (
+        <>
+          <div className={`lg:hidden ${isOpen ? "block" : "hidden"} bg-white shadow-md`}>
+            <div className="flex flex-col items-start">
+              <Link to="/missionvision" onClick={handleLinkClick} className="nav-item nav-link text-gray-800 font-medium hover:text-primary transition duration-300">Profile</Link>
+            </div>
+          </div>
+          <div className="hidden lg:flex flex-row items-center space-x-1 relative">
+  <LuUserCircle 
+    className="text-gray-800 w-7 h-8 transition duration-300 transform hover:scale-110 hover:text-primary cursor-pointer" 
+    onClick={toggleDropdown}
+    aria-expanded={isDropdownOpen}
+    aria-haspopup="true"
+  />
+  {isDropdownOpen && (
+    <div className="dropdown-menu absolute right-0 mt-0 w-48 bg-gray-200 rounded-md shadow-lg z-50"> {/* Changed bg-white to bg-gray-200 */}
+      <Link to="/profile" className="dropdown-item text-gray-800 block px-4 py-2 hover:bg-gray-300 transition duration-200">Profile</Link> {/* Changed hover:bg-gray-100 to hover:bg-gray-300 */}
+      <Link to="/logout" className="dropdown-item text-gray-800 block px-4 py-2 hover:bg-gray-300 transition duration-200">Log Out</Link> {/* Same as above */}
+    </div>
+  )}
+</div>
+
+        </>
+      );
+    }
+  };
+
+  const handleClickOutside = (event) => {
+    if (!event.target.closest('.relative')) {
+      closeDropdown();
+    }
+  };
 
     document.addEventListener('click', handleClickOutside);
     return () => {
