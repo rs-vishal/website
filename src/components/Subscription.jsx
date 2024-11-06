@@ -67,18 +67,35 @@ function Subscription() {
   const [accountInfo, setAccountInfo] = useState(null);
   const [balance, setBalance] = useState(null); // Track balance
   const [web3, setWeb3] = useState(null);
+  const [isNavbarVisible, setIsNavbarVisible] = useState(true); // Navbar visibility state
 
   useEffect(() => {
     if (typeof window.ethereum !== 'undefined') {
       setWeb3(new Web3(window.ethereum)); // Initialize Web3 if MetaMask is present
     }
+
+    // Mouse move listener to track the mouse position
+    const handleMouseMove = (event) => {
+      if (event.clientY <= 50) {
+        setIsNavbarVisible(true); // Show navbar when mouse is near the top
+      } else {
+        setIsNavbarVisible(false); // Hide navbar when mouse moves down
+      }
+    };
+
+    document.addEventListener("mousemove", handleMouseMove);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+    };
   }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value, // Corrected this to ensure dynamic keys work correctly
+      [name]: value,
     });
   };
 
@@ -186,7 +203,13 @@ function Subscription() {
 
   return (
     <div>
-      <Navbar />
+      {/* Navbar visibility toggles based on mouse position */}
+      <div
+        className={`transition-transform duration-300 ease-in-out ${isNavbarVisible ? 'translate-y-0' : '-translate-y-full'} absolute top-0 left-0 right-0 z-50`}
+      >
+        <Navbar />
+      </div>
+
       <div className="relative bg-gray-200 h-screen overflow-hidden flex flex-col">
         <div className="flex flex-1 items-center justify-center w-full">
           {currentSection === 'form' ? (

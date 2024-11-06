@@ -53,7 +53,7 @@ const Login = () => {
       localStorage.setItem("username", response.data.user.name);
       localStorage.setItem("usermail", response.data.user.email);
       localStorage.setItem("teamzid", response.data.user.temzid);
-      localStorage.setItem("ph-num", response.data.user.phonenumber);
+      localStorage.setItem("phonenumber", response.data.user.phonenumber);
 
       // Hide success message after 1.5 seconds and navigate to home
       setTimeout(() => {

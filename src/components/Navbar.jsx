@@ -51,15 +51,35 @@ const Navbar = () => {
         </div>
         
         <div className="hidden lg:flex items-center space-x-9">
-          <Link to="/" className="nav-item text-gray-800 font-medium hover:text-primary transition duration-300">Home</Link>
-          <Link to="/about" className="nav-item text-gray-800 font-medium hover:text-primary transition duration-300">About</Link>
-          <Link to="/techStack" className="nav-item text-gray-800 font-medium hover:text-primary transition duration-300">TechStack</Link>
-          <Link to="/missionvision" className="nav-item text-gray-800 font-medium hover:text-primary transition duration-300">Mission & Vision</Link>
+          <Link 
+            to="/" 
+            className="nav-item text-gray-800 font-medium hover:text-primary transition duration-300 transform hover:scale-110"
+          >
+            Home
+          </Link>
+          <Link 
+            to="/about" 
+            className="nav-item text-gray-800 font-medium hover:text-primary transition duration-300 transform hover:scale-110"
+          >
+            About
+          </Link>
+          <Link 
+            to="/techStack" 
+            className="nav-item text-gray-800 font-medium hover:text-primary transition duration-300 transform hover:scale-110"
+          >
+            TechStack
+          </Link>
+          <Link 
+            to="/missionvision" 
+            className="nav-item text-gray-800 font-medium hover:text-primary transition duration-300 transform hover:scale-110"
+          >
+            Mission & Vision
+          </Link>
 
           {/* Conditionally render Register button if authenticated */}
           {isAuthenticated && (
             <a href='/subscribe'>
-              <button className="btn btn-primary bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-200">
+              <button className="btn bg-gradient-to-r from-black to-cyan-900 text-white px-4 py-2 rounded-md hover:from-black hover:to-cyan-800 transition duration-200">
                 Register
               </button>
             </a>
@@ -87,7 +107,12 @@ const Navbar = () => {
               )}
             </div>
           ) : (
-            <Link to="/login" className="nav-item text-gray-800 font-medium hover:text-primary transition duration-300">Log In</Link>
+            <Link 
+              to="/login" 
+              className="nav-item text-gray-800 font-medium hover:text-primary transition duration-300 transform hover:scale-110"
+            >
+              Log In
+            </Link>
           )}
         </div>
       </div>
@@ -95,15 +120,35 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <div className={`lg:hidden ${isOpen ? "block" : "hidden"} bg-white shadow-md`}>
         <div className="flex flex-col items-start py-4">
-          <Link to="/" className="nav-item text-gray-800 font-medium hover:text-primary transition duration-300 py-2">Home</Link>
-          <Link to="/about" className="nav-item text-gray-800 font-medium hover:text-primary transition duration-300 py-2">About</Link>
-          <Link to="/techStack" className="nav-item text-gray-800 font-medium hover:text-primary transition duration-300 py-2">TechStack</Link>
-          <Link to="/missionvision" className="nav-item text-gray-800 font-medium hover:text-primary transition duration-300 py-2">Mission & Vision</Link>
+          <Link 
+            to="/" 
+            className="nav-item text-gray-800 font-medium hover:text-primary transition duration-300 py-2 transform hover:scale-110"
+          >
+            Home
+          </Link>
+          <Link 
+            to="/about" 
+            className="nav-item text-gray-800 font-medium hover:text-primary transition duration-300 py-2 transform hover:scale-110"
+          >
+            About
+          </Link>
+          <Link 
+            to="/techStack" 
+            className="nav-item text-gray-800 font-medium hover:text-primary transition duration-300 py-2 transform hover:scale-110"
+          >
+            TechStack
+          </Link>
+          <Link 
+            to="/missionvision" 
+            className="nav-item text-gray-800 font-medium hover:text-primary transition duration-300 py-2 transform hover:scale-110"
+          >
+            Mission & Vision
+          </Link>
 
           {/* Conditionally render Register button if authenticated */}
           {isAuthenticated && (
             <a href='/subscribe'>
-              <button className="btn btn-primary d-block w-full mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-200">
+              <button className="btn btn-primary d-block w-full mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-200 ">
                 Register
               </button>
             </a>
@@ -112,16 +157,24 @@ const Navbar = () => {
           {/* Authentication-based Links (Profile, Logout) */}
           {isAuthenticated ? (
             <div className="flex flex-col items-start mt-4">
-              <Link to="/profile" className="nav-item text-gray-800 font-medium hover:text-primary transition duration-300 py-2">Profile</Link>
+              <Link 
+                to="/profile" 
+                className="nav-item text-gray-800 font-medium hover:text-primary transition duration-300 py-2 transform hover:scale-110"
+              >
+                Profile
+              </Link>
               <button
                 onClick={logout}
-                className="nav-item text-gray-800 font-medium hover:text-primary transition duration-300 py-2"
+                className="nav-item text-gray-800 font-medium hover:text-primary transition duration-300 py-2 transform hover:scale-110"
               >
                 Log Out
               </button>
             </div>
           ) : (
-            <Link to="/login" className="nav-item text-gray-800 font-medium hover:text-primary transition duration-300 py-2">
+            <Link 
+              to="/login" 
+              className="nav-item text-gray-800 font-medium hover:text-primary transition duration-300 py-2 transform hover:scale-110"
+            >
               Log In
             </Link>
           )}
