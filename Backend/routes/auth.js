@@ -29,9 +29,9 @@ router.post('/register', async (req, res) => {
         }
 
         const validTemzid = await User.findOne({ temzid: existingtemzid });
-        if (!validTemzid) {
-            return res.status(400).json({ message: 'Invalid existing temzid' });
-        }
+        // if (!validTemzid) {
+        //     return res.status(400).json({ message: 'Invalid existing temzid' });
+        // }
 
         const existingPhoneNumber = await User.findOne({ phonenumber });
         if (existingPhoneNumber) {

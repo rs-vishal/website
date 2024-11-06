@@ -3,6 +3,7 @@ import Lottie from 'lottie-react';
 import animationData from '../assets/subscribe.json';
 import loadinganimation from "../assets/loading.json";
 import bgimage from "../assets/bgsup.jpg";
+import Navbar from './Navbar';
 
 function Subscription() {
   const [formData, setFormData] = useState({
@@ -63,6 +64,8 @@ function Subscription() {
   };
 
   return (
+    <div>
+      <Navbar/>
     <div className="relative bg-gray-200 h-screen overflow-hidden flex flex-col">
       {/* Main container for row layout */}
       <div className="flex flex-1 items-center justify-center w-full">
@@ -164,7 +167,7 @@ function Subscription() {
             {selectedPlan && (
               <div className="absolute bottom-10 text-center w-full">
                 <button
-                  className="py-2 px-6 bg-green-600 text-white rounded-md hover:bg-green-700 font-montserrat"
+                  className="py-2  px-6 bg-green-600 text-white rounded-md hover:bg-green-700 font-montserrat"
                   onClick={openModal}
                 >
                   Proceed
@@ -209,6 +212,7 @@ function Subscription() {
           </div>
         )}
       </div>
+    </div>
     </div>
   );
 }

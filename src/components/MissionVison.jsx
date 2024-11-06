@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import AOS styles
 import coin from '../assets/hero-2.png';
+import Navbar from './Navbar';
 
 export default function MissionVision() {
     useEffect(() => {
@@ -10,6 +11,7 @@ export default function MissionVision() {
 
     return (
         <div>
+            <Navbar/>
             {/* Header */}
             <div className="container-fluid hero-header bg-light py-5 mb-5">
                 <div className="container py-5">

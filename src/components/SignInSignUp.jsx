@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
+import Navbar from "./Navbar";
 // import { API_URL } from "@env";
 
 const SignInSignUp = () => {
@@ -125,6 +126,8 @@ const SignInSignUp = () => {
   };
 
   return (
+    <div>
+      <Navbar/>
     <div
       className={`flex items-center justify-center w-full h-screen ${
         isActive ? "bg-gradient-to-r from-gray-200 to-blue-200" : "bg-gray-100"
@@ -361,6 +364,7 @@ const SignInSignUp = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

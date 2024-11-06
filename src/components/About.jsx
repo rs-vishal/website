@@ -3,6 +3,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import AOS styles
 import coin from '../assets/hero-2.png';
 import about from '../assets/about.png';
+import Navbar from "./Navbar";
 
 function About() {
     useEffect(() => {
@@ -11,6 +12,7 @@ function About() {
 
     return (
         <div>
+            <Navbar/>
             {/* Header */}
             <div className="container-fluid hero-header bg-light py-5 mb-5">
                 <div className="container py-5">

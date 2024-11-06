@@ -13,6 +13,7 @@ import whyus3 from "../assets/icon-5.png";
 import whyus4 from "../assets/icon-4.png";
 import whyus5 from "../assets/icon-3.png";
 import whyus6 from "../assets/icon-8.png";
+import Navbar from "./Navbar";
 
 const Home = () => {
   const [todayTransaction, setTodayTransaction] = useState();
@@ -22,24 +23,10 @@ const Home = () => {
   useEffect(() => {
     AOS.init();
   }, []);
-  const renderAuthLinks = () => {
-    const isAuthenticated = localStorage.getItem('isAuthenticated');
 
-    if (isAuthenticated) {
-      return (
-        <div className="fixed bottom-4 left-0 right-0 flex justify-center p-4 bg-black bg-opacity-0 rounded">
-          <a href="subscribe">
-  <button className="bg-amber-300 text-white font-medium py-2 px-4 rounded">Connect
-  </button></a>
-</div>
-
-
-      
-      );
-    } 
-  };
   return (
     <div>
+      <Navbar/>
       {/* Header */}
       <div
         className="container-fluid hero-header mb-5"
@@ -98,18 +85,11 @@ const Home = () => {
                 sustainable solutions to drive positive change and support our
                 planet.
               </p>
-              
-
             </div>
-            {renderAuthLinks()}
-
           </div>
         </div>
-        
-        
-
-
       </div>
+
       {/* About */}
       <div className="container-xxl py-5">
         <div className="container">
@@ -147,18 +127,6 @@ const Home = () => {
                   creating real value for all. Together, we can build a
                   brighter, more sustainable future.
                 </p>
-                <div className="d-flex align-items-center mb-2">
-                  <i className="fa fa-check bg-light text-primary btn-sm-square rounded-circle me-3 fw-bold"></i>
-                  <span>Tempor erat elitr rebum at clita</span>
-                </div>
-                <div className="d-flex align-items-center mb-2">
-                  <i className="fa fa-check bg-light text-primary btn-sm-square rounded-circle me-3 fw-bold"></i>
-                  <span>Tempor erat elitr rebum at clita</span>
-                </div>
-                <div className="d-flex align-items-center mb-4">
-                  <i className="fa fa-check bg-light text-primary btn-sm-square rounded-circle me-3 fw-bold"></i>
-                  <span>Tempor erat elitr rebum at clita</span>
-                </div>
               </div>
             </div>
           </div>
@@ -174,16 +142,7 @@ const Home = () => {
               data-aos="fade-up"
               data-aos-delay="100"
             >
-              <div className="flex justify-center mb-4">
-                <img
-                  className="img-fluid mr-[23px]"
-                  src={stats1}
-                  alt="Today Transactions"
-                />
-              </div>
-              <h1 className="display-4" data-toggle="counter-up">
-                123456
-              </h1>
+              <h1 className="display-4">123456</h1>
               <p className="fs-5 text-primary mb-0">Today Transactions</p>
             </div>
             <div
@@ -191,16 +150,7 @@ const Home = () => {
               data-aos="fade-up"
               data-aos-delay="300"
             >
-              <div className="flex justify-center mb-4">
-                <img
-                  className="img-fluid mr-[23px]"
-                  src={stats2}
-                  alt="Monthly Transactions"
-                />
-              </div>
-              <h1 className="display-4" data-toggle="counter-up">
-                123456
-              </h1>
+              <h1 className="display-4">123456</h1>
               <p className="fs-5 text-primary mb-0">Monthly Transactions</p>
             </div>
             <div
@@ -208,16 +158,7 @@ const Home = () => {
               data-aos="fade-up"
               data-aos-delay="500"
             >
-              <div className="flex justify-center mb-4">
-                <img
-                  className="img-fluid mr-[23px]"
-                  src={stats3}
-                  alt="Total Transactions"
-                />
-              </div>
-              <h1 className="display-4" data-toggle="counter-up">
-                123456
-              </h1>
+              <h1 className="display-4">123456</h1>
               <p className="fs-5 text-primary mb-0">Total Transactions</p>
             </div>
           </div>
@@ -233,132 +174,12 @@ const Home = () => {
           </div>
           <div className="row g-5">
             <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-              <div className="d-flex align-items-start">
-                <img className="img-fluid flex-shrink-0" src={whyus1} alt="Easy To Start" />
-                <div className="ps-4">
-                  <h5 className="mb-3">Easy To Start</h5>
-                  <span>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo</span>
-                </div>
-              </div>
+              <h5 className="mb-3">Easy To Start</h5>
+              <span>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo</span>
             </div>
             <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-              <div className="d-flex align-items-start">
-                <img className="img-fluid flex-shrink-0" src={whyus2} alt="Safe & Secure" />
-                <div className="ps-4">
-                  <h5 className="mb-3">Safe & Secure</h5>
-                  <span>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo</span>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-              <div className="d-flex align-items-start">
-                <img className="img-fluid flex-shrink-0" src={whyus3} alt="Affordable Plans" />
-                <div className="ps-4">
-                  <h5 className="mb-3">Affordable Plans</h5>
-                  <span>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo</span>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-              <div className="d-flex align-items-start">
-                <img className="img-fluid flex-shrink-0" src={whyus4} alt="Secure Storage" />
-                <div className="ps-4">
-                  <h5 className="mb-3">Secure Storage</h5>
-                  <span>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo</span>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-              <div className="d-flex align-items-start">
-                <img className="img-fluid flex-shrink-0" src={whyus5} alt="Protected By Insurance" />
-                <div className="ps-4">
-                  <h5 className="mb-3">Protected By Insurance</h5>
-                  <span>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo</span>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-              <div className="d-flex align-items-start">
-                <img className="img-fluid flex-shrink-0" src={whyus6} alt="24/7 Support" />
-                <div className="ps-4">
-                  <h5 className="mb-3">24/7 Support</h5>
-                  <span>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* TechStack */}
-      <div className="container-xxl py-5">
-        <div className="container">
-          <div className="text-center mx-auto" data-aos="fade-up" data-aos-delay="100" style={{ maxWidth: '500px' }}>
-            <h1 className="display-6">TechStack</h1>
-            <p className="text-primary fs-5 mb-5">Buy, Sell And Exchange Cryptocurrency</p>
-          </div>
-
-          <div className="text-center mb-5">
-            <p>
-              Blockchain technology enables transparent, protection, and confidence when processing transactions
-              in our sustainable energy initiative. Users benefit from instant verification and the immutability
-              of their assets since control is decentralised. This empowers individuals while also promoting a
-              sustainable future.
-            </p>
-          </div>
-
-          <div className="row g-4 mb-5">
-            <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-              <div className="TechStack-item bg-light p-5">
-                <img className="img-fluid mb-4" src={whyus5} alt="Guaranteed Security" />
-                <h5 className="mb-3">Guaranteed Security</h5>
-                <p>Your data's security is our top priority. With a decentralised design, you keep control of your
-                  data, ensuring there are no more main points of vulnerability by us.</p>
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-              <div className="TechStack-item bg-light p-5">
-                <img className="img-fluid mb-4" src={stats1} alt="Best Exchange Rates" />
-                <h5 className="mb-3">Best Exchange Rates</h5>
-                <p>Access a global experience. Geographic boundaries are not a restriction when employing
-                  decentralisation. Engage with persons, information, and services from across the world.</p>
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-              <div className="TechStack-item bg-light p-5">
-                <img className="img-fluid mb-4" src={whyus1} alt="Faster Transactions" />
-                <h5 className="mb-3">Faster Transactions</h5>
-                <p>Regain control of your digital presence. You have complete control over your data in the
-                  (COMPANY NAME). Choose who has access to your information and how it is used.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      {/* MissionVision */}
-      <div className="container-xxl py-5">
-        <div className="container">
-          <div className="text-center mx-auto" data-aos="fade-up" data-aos-delay="100" style={{ maxWidth: '500px' }}>
-            <h1 className="display-6">Mission & Vision</h1>
-            <p className="text-primary fs-5 mb-5">We Translate Your Dream Into Reality</p>
-          </div>
-          <div className="row">
-            <div className="col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="100">
-              <h5>MISSION</h5>
-              <p>
-                (COMPANY NAME) aims to deliver cutting-edge services and products that enable our clients to
-                maximise the benefits of sustainable technology and practices for a healthy world.
-              </p>
-            </div>
-            <div className="col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="300">
-              <h5>VISION</h5>
-              <p>
-                (COMPANY NAME) aims to drive the worldwide transition to a more accessible, secure, and
-                decentralised environmental future. We envisage a society in which sustainable technology empowers
-                individuals and organisations, breaking down old environmental barriers and encouraging ecological
-                participation for everyone.
-              </p>
+              <h5 className="mb-3">Safe & Secure</h5>
+              <span>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo</span>
             </div>
           </div>
         </div>

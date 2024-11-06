@@ -3,6 +3,7 @@ import Lottie from "lottie-react";
 import animationData from "../assets/bglog4.json";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -73,6 +74,8 @@ const Register = () => {
   
 
   return (
+    <div>
+      <Navbar/>
     <div className="text-black relative min-h-screen flex items-center justify-end overflow-hidden">
       <Lottie
         animationData={animationData}
@@ -305,6 +308,7 @@ const Register = () => {
           </p>
         </form>
       </div>
+    </div>
     </div>
   );
 };

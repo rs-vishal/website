@@ -5,6 +5,7 @@ import succesanimation from "../assets/sucess.json"
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import Navbar from './Navbar';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -70,6 +71,8 @@ const Login = () => {
   };
 
   return (
+    <div>
+      <Navbar/>
     <div className="relative h-screen bg-white flex items-center justify-end overflow-hidden text-black">
       <Lottie
         animationData={animationData}
@@ -164,6 +167,7 @@ const Login = () => {
 </div>
 
         )}
+    </div>
     </div>
   );
 };
