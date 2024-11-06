@@ -4,29 +4,52 @@ import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import AOS styles
 import video from "../assets/bitcoin.mp4";
 import about from "../assets/about.png";
-import stats1 from "../assets/icon-9.png";
-import stats2 from "../assets/icon-10.png";
-import stats3 from "../assets/icon-2.png";
-import whyus1 from "../assets/icon-7.png";
-import whyus2 from "../assets/icon-6.png";
-import whyus3 from "../assets/icon-5.png";
-import whyus4 from "../assets/icon-4.png";
-import whyus5 from "../assets/icon-3.png";
-import whyus6 from "../assets/icon-8.png";
 import Navbar from "./Navbar";
+import Web3 from 'web3'; // Import Web3 for MetaMask integration
 
 const Home = () => {
-  const [todayTransaction, setTodayTransaction] = useState();
-  const [monthlyTransaction, setMonthlyTransaction] = useState();
-  const [totalTransaction, setTotalTransaction] = useState();
+  const [todayTransaction, setTodayTransaction] = useState(0);
+  const [monthlyTransaction, setMonthlyTransaction] = useState(0);
+  const [totalTransaction, setTotalTransaction] = useState(0);
 
+  // Fetch transaction data from an API or some source
   useEffect(() => {
     AOS.init();
+
+    // Mock API call (replace with real API)
+    const fetchTransactionData = async () => {
+      try {
+        const response = await fetch("/api/transactions");
+        const data = await response.json();
+        setTodayTransaction(data.today);
+        setMonthlyTransaction(data.monthly);
+        setTotalTransaction(data.total);
+      } catch (error) {
+        console.error("Error fetching transaction data:", error);
+      }
+    };
+
+    fetchTransactionData();
   }, []);
+
+  // Connect function for MetaMask
+  const Connect = async () => {
+    if (window.ethereum) {
+      try {
+        await window.ethereum.request({ method: 'eth_requestAccounts' });
+        const web3 = new Web3(window.ethereum);
+        console.log("Connected to MetaMask:", web3);
+      } catch (error) {
+        console.error("User denied account access:", error);
+      }
+    } else {
+      console.log("MetaMask is not installed!");
+    }
+  };
 
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       {/* Header */}
       <div
         className="container-fluid hero-header mb-5"
@@ -90,6 +113,17 @@ const Home = () => {
         </div>
       </div>
 
+      {/* Connect Button Section */}
+      <div className="d-flex justify-content-center mt-3" id="connect-section">
+        <input
+          id="connect"
+          type="button"
+          value="Connect"
+          className="btn btn-primary"
+          onClick={Connect}
+        />
+      </div>
+
       {/* About */}
       <div className="container-xxl py-5">
         <div className="container">
@@ -133,57 +167,9 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Stats */}
-      <div className="container-xxl bg-light py-5 my-5">
-        <div className="container py-5">
-          <div className="row g-5">
-            <div
-              className="col-lg-4 col-md-6 text-center"
-              data-aos="fade-up"
-              data-aos-delay="100"
-            >
-              <h1 className="display-4">123456</h1>
-              <p className="fs-5 text-primary mb-0">Today Transactions</p>
-            </div>
-            <div
-              className="col-lg-4 col-md-6 text-center"
-              data-aos="fade-up"
-              data-aos-delay="300"
-            >
-              <h1 className="display-4">123456</h1>
-              <p className="fs-5 text-primary mb-0">Monthly Transactions</p>
-            </div>
-            <div
-              className="col-lg-4 col-md-6 text-center"
-              data-aos="fade-up"
-              data-aos-delay="500"
-            >
-              <h1 className="display-4">123456</h1>
-              <p className="fs-5 text-primary mb-0">Total Transactions</p>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      {/* Why Us */}
-      <div className="container-xxl py-5">
-        <div className="container">
-          <div className="text-center mx-auto" data-aos="fade-up" data-aos-delay="100" style={{ maxWidth: '500px' }}>
-            <h1 className="display-6">Why Us!</h1>
-            <p className="text-primary fs-5 mb-5">The Best In The Crypto Industry</p>
-          </div>
-          <div className="row g-5">
-            <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-              <h5 className="mb-3">Easy To Start</h5>
-              <span>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo</span>
-            </div>
-            <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-              <h5 className="mb-3">Safe & Secure</h5>
-              <span>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo</span>
-            </div>
-          </div>
-        </div>
-      </div>
+
+
       <footer className="bg-blue-50 text-black py-10">
                 <div className="max-w-7xl mx-auto flex justify-between flex-wrap">
                     <div className="flex-1 min-w-250px p-5">

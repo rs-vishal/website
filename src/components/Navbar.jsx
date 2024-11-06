@@ -50,7 +50,7 @@ const Navbar = () => {
           </button>
         </div>
         
-        <div className="hidden lg:flex items-center space-x-4">
+        <div className="hidden lg:flex items-center space-x-9">
           <Link to="/" className="nav-item text-gray-800 font-medium hover:text-primary transition duration-300">Home</Link>
           <Link to="/about" className="nav-item text-gray-800 font-medium hover:text-primary transition duration-300">About</Link>
           <Link to="/techStack" className="nav-item text-gray-800 font-medium hover:text-primary transition duration-300">TechStack</Link>
