@@ -12,6 +12,13 @@ const Home = () => {
   const [monthlyTransaction, setMonthlyTransaction] = useState(0);
   const [totalTransaction, setTotalTransaction] = useState(0);
 
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // Track authentication state
+
+  useEffect(() => {
+    const authStatus = localStorage.getItem('isAuthenticated');
+    setIsAuthenticated(authStatus === 'true'); 
+  }, []);
+
   // Fetch transaction data from an API or some source
   useEffect(() => {
     AOS.init();
@@ -43,6 +50,7 @@ const Home = () => {
         console.error("User denied account access:", error);
       }
     } else {
+      alert("MetaMask is not installed!")
       console.log("MetaMask is not installed!");
     }
   };
@@ -115,13 +123,15 @@ const Home = () => {
 
       {/* Connect Button Section */}
       <div className="d-flex justify-content-center mt-3" id="connect-section">
-        <input
-          id="connect"
-          type="button"
-          value="Connect"
-          className="btn btn-primary"
-          onClick={Connect}
-        />
+      {isAuthenticated && (
+            <input
+            id="connect"
+            type="button"
+            value="Connect"
+            className="btn btn-primary"
+            onClick={Connect}
+          />
+          )}
       </div>
 
       {/* About */}
