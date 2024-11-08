@@ -25,10 +25,27 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [successMessage, setSuccessMessage] = useState(false); // State for success message visibility
+  const [isNavbarVisible, setIsNavbarVisible] = useState(true); // Navbar visibility state
   const navigate = useNavigate();
 
   useEffect(() => {
     setCaptcha(generateCaptcha(6)); // Generate a new CAPTCHA when the component mounts
+
+    // Mouse move listener to track the mouse position
+    const handleMouseMove = (event) => {
+      if (event.clientY <= 50) {
+        setIsNavbarVisible(true); // Show navbar when mouse is near the top
+      } else {
+        setIsNavbarVisible(false); // Hide navbar when mouse moves down
+      }
+    };
+
+    document.addEventListener("mousemove", handleMouseMove);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+    };
   }, []);
 
   const handleSubmit = async (e) => {
@@ -72,102 +89,101 @@ const Login = () => {
 
   return (
     <div>
+      {/* Navbar visibility toggles based on mouse position */}
+      <div className=" absolute w-full">
       <Navbar/>
-    <div className="relative h-screen bg-white flex items-center justify-end overflow-hidden text-black">
-      <Lottie
-        animationData={animationData}
-        loop={true}
-        style={{ position: 'absolute', width: '50vw', height: '50vh', top: 200, left: 60 }}
-      />
+      </div>
 
-      <div className="relative w-full max-w-lg p-8 bg-gray-500 bg-opacity-20 rounded-lg backdrop-blur-md shadow-lg mr-56">
-        <h2 className="text-3xl font-semibold font-arima text-center">Login</h2>
+      <div className="relative h-screen bg-white flex items-center justify-end overflow-hidden text-black">
+        <Lottie
+          animationData={animationData}
+          loop={true}
+          style={{ position: 'absolute', width: '50vw', height: '50vh', top: 200, left: 60 }}
+        />
 
-        <form className="mt-6 space-y-8" onSubmit={handleSubmit}>
-          <div>
-            <label className="block text-sm font-medium " htmlFor="email">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-2 mt-3 bg-transparent border border-white rounded-lg placeholder-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500"
-              placeholder="Email"
-              required
-            />
-          </div>
+        <div className="relative w-full max-w-lg p-8 bg-gray-500 bg-opacity-20 rounded-lg backdrop-blur-md shadow-lg mr-56">
+          <h2 className="text-3xl font-semibold font-arima text-center">Login</h2>
 
-          <div>
-            <label className="block text-sm font-medium " htmlFor="password">
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-2 mt-3 bg-transparent border border-white rounded-lg placeholder-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500"
-              placeholder="Password"
-              required
-            />
-          </div>
+          <form className="mt-6 space-y-8" onSubmit={handleSubmit}>
+            <div>
+              <label className="block text-sm font-medium " htmlFor="email">
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full p-2 mt-3 bg-transparent border border-white rounded-lg placeholder-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                placeholder="Email"
+                required
+              />
+            </div>
 
-          {/* CAPTCHA Section */}
-          <div className="mt-4 flex items-center">
-            <label className="block text-sm font-medium " style={{ fontSize: '0.9rem', marginRight: '0.5rem' }}>
-              CAPTCHA: <span className="font-bold">{captcha}</span>
-            </label>
-            <input
-              type="text"
-              value={userCaptcha}
-              onChange={(e) => setUserCaptcha(e.target.value)}
-              className={`flex-1 p-2 bg-transparent border ${captchaError ? 'border-red-500' : 'border-white'} rounded-lg placeholder-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500`}
-              placeholder="Enter CAPTCHA"
-              required
-              style={{ fontSize: '0.9rem' }}
-            />
-            {captchaError && <p className="text-red-500 text-sm ml-2">Incorrect CAPTCHA. Please try again.</p>}
-          </div>
+            <div>
+              <label className="block text-sm font-medium " htmlFor="password">
+                Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full p-2 mt-3 bg-transparent border border-white rounded-lg placeholder-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                placeholder="Password"
+                required
+              />
+            </div>
 
-          <div className="flex items-center justify-between text-sm">
-            <label className="flex items-center">
-              <input type="checkbox" className="form-checkbox h-4 w-4 text-orange-500" />
-              <span className="ml-2">Remember me</span>
-            </label>
-            <Link to="/forgot-password" className="hover:underline">Forgot password?</Link>
-          </div>
+            {/* CAPTCHA Section */}
+            <div className="mt-4 flex items-center">
+              <label className="block text-sm font-medium " style={{ fontSize: '0.9rem', marginRight: '0.5rem' }}>
+                CAPTCHA: <span className="font-bold">{captcha}</span>
+              </label>
+              <input
+                type="text"
+                value={userCaptcha}
+                onChange={(e) => setUserCaptcha(e.target.value)}
+                className={`flex-1 p-2 bg-transparent border ${captchaError ? 'border-red-500' : 'border-white'} rounded-lg placeholder-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500`}
+                placeholder="Enter CAPTCHA"
+                required
+                style={{ fontSize: '0.9rem' }}
+              />
+              {captchaError && <p className="text-red-500 text-sm ml-2">Incorrect CAPTCHA. Please try again.</p>}
+            </div>
 
-          <button
-            type="submit"
-            className="w-full py-2 mt-4 bg-orange-500 rounded-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-700"
-          >
-            Login
-          </button>
-        </form>
+            <div className="flex items-center justify-between text-sm">
+              <label className="flex items-center">
+                <input type="checkbox" className="form-checkbox h-4 w-4 text-orange-500" />
+                <span className="ml-2">Remember me</span>
+              </label>
+              <Link to="/forgot-password" className="hover:underline">Forgot password?</Link>
+            </div>
 
-        <p className="mt-4 text-center text-sm">
-          Don't have an account?{' '}
-          <Link to="/register" className="font-medium text-orange-500 hover:underline">Register</Link>
-        </p>
+            <button
+              type="submit"
+              className="w-full py-2 mt-4 bg-orange-500 rounded-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-700"
+            >
+              Login
+            </button>
+          </form>
+
+          <p className="mt-4 text-center text-sm">
+            Don't have an account?{' '}
+            <Link to="/register" className="font-medium text-orange-500 hover:underline">Register</Link>
+          </p>
+
+        </div>
 
         {/* Success Message Popup */}
-
-      </div>
-      {successMessage && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 z-10">
-  {/* Lottie Animation */}
-
-
-  {/* Success Message */}
-  <div className="p-4 bg-green-500 text-white rounded-lg absolute z-20">
-    Login Successful!
-  </div>
-</div>
-
+        {successMessage && (
+          <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 z-10">
+            <div className="p-4 bg-green-500 text-white rounded-lg absolute z-20">
+              Login Successful!
+            </div>
+          </div>
         )}
-    </div>
+      </div>
     </div>
   );
 };

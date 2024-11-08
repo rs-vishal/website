@@ -37,10 +37,10 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white shadow-sm sticky top-0 w-full z-50">
+    <nav className="bg-white shadow-sm sticky top-0 w-full z-50 h-12">
       <div className="flex justify-between items-center h-16 px-6 lg:px-8">
-        <Link to="/" className="flex items-center">
-          <img className="w-12 mr-2 hover:scale-105" src={logo} alt="CryptoCoin Logo" />
+        <Link to="/" className="flex items-center mb-3">
+          <img className=" size-10 mr-2 hover:scale-105" src={logo} alt="CryptoCoin Logo" />
           <h2 className="text-primary m-0 text-2xl font-semibold">CryptoCoin</h2>
         </Link>
         
@@ -50,7 +50,7 @@ const Navbar = () => {
           </button>
         </div>
         
-        <div className="hidden lg:flex items-center space-x-9">
+        <div className="hidden lg:flex items-center space-x-9 mb-3">
           <Link 
             to="/" 
             className="nav-item text-gray-800 font-medium hover:text-primary transition duration-300 transform hover:scale-110"

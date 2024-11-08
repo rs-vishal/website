@@ -75,7 +75,9 @@ const Register = () => {
 
   return (
     <div>
+      <div className=" absolute w-full">
       <Navbar/>
+      </div>
     <div className="text-black relative min-h-screen flex items-center justify-end overflow-hidden">
       <Lottie
         animationData={animationData}
