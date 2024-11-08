@@ -25,27 +25,10 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [successMessage, setSuccessMessage] = useState(false); // State for success message visibility
-  const [isNavbarVisible, setIsNavbarVisible] = useState(true); // Navbar visibility state
   const navigate = useNavigate();
 
   useEffect(() => {
     setCaptcha(generateCaptcha(6)); // Generate a new CAPTCHA when the component mounts
-
-    // Mouse move listener to track the mouse position
-    const handleMouseMove = (event) => {
-      if (event.clientY <= 50) {
-        setIsNavbarVisible(true); // Show navbar when mouse is near the top
-      } else {
-        setIsNavbarVisible(false); // Hide navbar when mouse moves down
-      }
-    };
-
-    document.addEventListener("mousemove", handleMouseMove);
-
-    // Cleanup event listener on component unmount
-    return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-    };
   }, []);
 
   const handleSubmit = async (e) => {
