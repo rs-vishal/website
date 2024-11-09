@@ -11,11 +11,9 @@ export default function MissionVision() {
 
     return (
         <div>
-            <Navbar/>
-            {/* Header */}
-            <div className="container-fluid hero-header bg-light py-5 mb-5">
+            <div className="container-fluid hero-header bg-light py-5 mb-5" style={{ minHeight: '100vh' }}>
                 <div className="container py-5">
-                    <div className="row g-5 align-items-center">
+                    <div className="row g-5 align-items-center" style={{ height: '100vh' }}>
                         <div className="col-lg-6" data-aos="fade-up">
                             <h1 className="display-4 mb-3 animated slideInDown">Mission & Vision</h1>
                         </div>
@@ -24,7 +22,7 @@ export default function MissionVision() {
                                 className="img-fluid"
                                 style={{ animationDuration: '3s' }}
                                 src={coin}
-                                alt=""
+                                alt="Coin image"
                             />
                         </div>
                     </div>
@@ -58,6 +56,8 @@ export default function MissionVision() {
                     </div>
                 </div>
             </div>
+
+            {/* Footer */}
             <footer className="bg-blue-50 text-black py-10">
                 <div className="max-w-7xl mx-auto flex justify-between flex-wrap">
                     <div className="flex-1 min-w-250px p-5">
@@ -69,6 +69,7 @@ export default function MissionVision() {
                         <p>&copy; 2024 companyname. All Rights Reserved.</p>
                     </div>
                     <div className="flex-1 min-w-250px p-5 text-center">
+                        {/* Empty for now */}
                     </div>
                     <div className="flex-1 min-w-250px p-5 text-right">
                         <h3 className="font-bold text-black">Contact Us</h3>

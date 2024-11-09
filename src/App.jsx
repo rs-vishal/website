@@ -12,18 +12,17 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Subscription from "./components/Subscription";
 import Profile from './components/Profile';  // Make sure you import Profile
+import Landingpage from "./components/Landingpage";
 
 function App() {
   return (
     <AuthProvider>  {/* Wrap the Router with AuthProvider */}
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
+          
+          <Route path="/" element={<Landingpage/>} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/techstack" element={<TechStack />} />
-          <Route path="/missionvision" element={<MissionVison />} />
           <Route path="/subscribe" element={<Subscription />} />
           <Route path="/profile" element={<Profile />} /> {/* Add route for Profile */}
           <Route path="*" element={<PageNotFound />} />

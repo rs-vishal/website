@@ -12,7 +12,6 @@ function About() {
 
     return (
         <div>
-            <Navbar/>
             {/* Header */}
             <div className="container-fluid hero-header bg-light py-5 mb-5">
                 <div className="container py-5">
@@ -56,7 +55,7 @@ function About() {
                     </div>
                 </div>
             </div>
-            <footer className="bg-blue-50 text-black py-10">
+            {/* <footer className="bg-blue-50 text-black py-10">
                 <div className="max-w-7xl mx-auto flex justify-between flex-wrap">
                     <div className="flex-1 min-w-250px p-5">
                         <img src="logo.png" alt="Logo" className="w-12 mb-2" />
@@ -75,7 +74,7 @@ function About() {
                         <p>Address: UK, London</p>
                     </div>
                 </div>
-            </footer>
+            </footer> */}
 
 
         </div>

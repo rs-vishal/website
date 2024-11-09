@@ -57,7 +57,7 @@ const Home = () => {
 
   return (
     <div>
-      <Navbar />
+      
       {/* Header */}
       <div
         className="container-fluid hero-header mb-5"
@@ -134,7 +134,7 @@ const Home = () => {
           )}
       </div>
 
-      {/* About */}
+      {/* About
       <div className="container-xxl py-5">
         <div className="container">
           <div className="row g-5 align-items-center">
@@ -175,9 +175,9 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
-
+{/* 
 
 
       <footer className="bg-blue-50 text-black py-10">
@@ -199,7 +199,7 @@ const Home = () => {
                         <p>Address: UK, London</p>
                     </div>
                 </div>
-            </footer>
+            </footer> */}
     </div>
   );
 };
