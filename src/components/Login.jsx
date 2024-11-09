@@ -59,7 +59,7 @@ const Login = () => {
       setTimeout(() => {
         setSuccessMessage(false);
         navigate('/'); // Navigate to the home page
-      }, 3000); // 1.5 seconds
+      }, 500); // 1.5 seconds
     } catch (error) {
       console.error('Error during login:', error);
       if (error.response) {
